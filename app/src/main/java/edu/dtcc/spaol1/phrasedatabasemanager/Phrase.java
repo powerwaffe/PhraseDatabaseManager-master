@@ -18,7 +18,7 @@ public class Phrase
         this._phrase_title = _phrase_title;
     }
 
-    // Three parameter constructor
+    // Two parameter constructor
     public Phrase(String _phrase_title, String _phrase)
     {
         this._phrase_title = _phrase_title;

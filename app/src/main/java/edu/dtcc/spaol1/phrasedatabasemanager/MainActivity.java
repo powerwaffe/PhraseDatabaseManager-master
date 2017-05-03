@@ -101,38 +101,22 @@ public class MainActivity extends AppCompatActivity implements
         EditText etPhrase = (EditText) dialog.getDialog().findViewById(R.id.etPhrase);
         String phrase = etPhrase.getText().toString();
 
-        // Update with a toast message to validate adding
-        db.addNewPhrase(new Phrase(phraseTitle, phrase));
-         Toast.makeText(getApplicationContext(), "Phrase Added",
-                 Toast.LENGTH_LONG).show();
-
-        // Second toast that displays the entry added
-        Toast.makeText(getApplicationContext(), "\nTitle :" + phraseTitle + "\nPhrase: " +
-                phrase, Toast.LENGTH_LONG).show();
-    }
-    
-    public boolean checkIDNumber(String Id_No)
-    {
-        if(Id_No == "")
+        if (phraseTitle.equals(""))
         {
-            return false;
+            // Display error due to phrase title being blank
+            Toast.makeText(getApplicationContext(), "Phrase title not found, entry not added",
+                    Toast.LENGTH_LONG).show();
         }
         else
         {
-            return true;
-        }
-    }
+            // Update with a toast message to validate adding
+            db.addNewPhrase(new Phrase(phraseTitle, phrase));
+            Toast.makeText(getApplicationContext(), "Phrase Added",
+                    Toast.LENGTH_LONG).show();
 
-    //Check phrase
-    public boolean checkPhraseTitle(String phraseTitle)
-    {
-        if(phraseTitle == "")
-        {
-            return false;
-        }
-        else
-        {
-            return true;
+            // Second toast that displays the entry added
+            Toast.makeText(getApplicationContext(), "\nTitle :" + phraseTitle + "\nPhrase: " +
+                    phrase, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -227,6 +211,19 @@ public class MainActivity extends AppCompatActivity implements
             // Detects if an actual ID is entered and also prevents app crash
             Toast.makeText(getApplicationContext(), "No ID entered, so no changes made",
                     Toast.LENGTH_LONG).show();
+        }
+    }
+
+    // Checks if ID number is blank
+    public boolean checkIDNumber(String Id_No)
+    {
+        if(Id_No == "")
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 }
