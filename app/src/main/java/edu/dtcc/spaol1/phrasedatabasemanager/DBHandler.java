@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBHandler extends SQLiteOpenHelper
+class DBHandler extends SQLiteOpenHelper
 {
     // All Static variables
     // Database Version
@@ -24,9 +24,8 @@ public class DBHandler extends SQLiteOpenHelper
     private static final String PHRASE_ID = "id";
     private static final String PHRASE_TITLE = "phrase_title";
     private static final String PHRASE = "phrase";
-    //private static final String KEY_PHONE_NO = "phone_number";
 
-    public DBHandler(Context context)
+    DBHandler(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -69,7 +68,7 @@ public class DBHandler extends SQLiteOpenHelper
     }
 
     /** For editing the phrase in the table */
-    public boolean editPhraseInfo(int updateID, String updatePhraseTitle, String updatePhrase)
+    boolean editPhraseInfo(int updateID, String updatePhraseTitle, String updatePhrase)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
@@ -82,16 +81,16 @@ public class DBHandler extends SQLiteOpenHelper
     }
 
     /** For deleting a phrase in the table */
-    public boolean deletePhrase(int delID)
+    boolean deletePhrase(int delID)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_PHRASE_DETAIL, PHRASE_ID + "=" + delID, null) > 0;
     }
 
     // Get all phrases
-    public List<Phrase> getAllPhraseList()
+    List<Phrase> getAllPhraseList()
     {
-        List<Phrase> phraseList = new ArrayList<Phrase>();
+        List<Phrase> phraseList = new ArrayList<>();
 
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_PHRASE_DETAIL;
@@ -108,13 +107,13 @@ public class DBHandler extends SQLiteOpenHelper
                 phrase.set_id(Integer.parseInt(cursor.getString(0)));
                 phrase.set_phrase_title(cursor.getString(1));
                 phrase.set_phrase(cursor.getString(2));
-                //phrase.set_phone_number(cursor.getString(3));
 
-                // Adding contact to list
+                // Adding phrase to list
                 phraseList.add(phrase);
             }
             while (cursor.moveToNext());
         }
+        cursor.close(); // Close the cursor
         return phraseList; // return contact list
     }
 }

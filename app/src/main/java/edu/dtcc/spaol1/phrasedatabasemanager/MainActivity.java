@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements
         AddPhrase.AddPhraseListener, EditPhrase.UpdatePhraseListener,
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements
         if (phraseTitle.equals(""))
         {
             // Display error due to phrase title being blank
-            Toast.makeText(getApplicationContext(), "Phrase title not found, entry not added",
+            Toast.makeText(getApplicationContext(), "Phrase Title Not Found, Entry Not Added",
                     Toast.LENGTH_LONG).show();
         }
         else
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements
                 else
                 {
                     // Complete failure to edit
-                    Toast.makeText(getApplicationContext(), "Edit Failed",
+                    Toast.makeText(getApplicationContext(), "Edit Failed, Enter Correct ID",
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements
         catch (Exception e)
         {
             // Detects if an actual ID is entered and also prevents app crash
-            Toast.makeText(getApplicationContext(), "No ID entered, so no changes made",
+            Toast.makeText(getApplicationContext(), "No ID Entered, So No Changes Made",
                     Toast.LENGTH_LONG).show();
         }
     }
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements
 
             if (check_idNo == false)
             {
-                Toast.makeText(getApplicationContext(), "Incorrect ID entered", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Incorrect ID Entered", Toast.LENGTH_LONG).show();
 
             }
             else
@@ -200,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "Deletion Failed",
+                    Toast.makeText(getApplicationContext(), "Deletion Failed, Enter Correct ID",
                             Toast.LENGTH_LONG).show();
                 }
 
@@ -209,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements
         catch (Exception e)
         {
             // Detects if an actual ID is entered and also prevents app crash
-            Toast.makeText(getApplicationContext(), "No ID entered, so no changes made",
+            Toast.makeText(getApplicationContext(), "No ID Entered, So No Changes Made",
                     Toast.LENGTH_LONG).show();
         }
     }
@@ -217,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements
     // Checks if ID number is blank
     public boolean checkIDNumber(String Id_No)
     {
-        if(Id_No == "")
+        if(Objects.equals(Id_No, ""))
         {
             return false;
         }
